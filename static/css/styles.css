@@ -1,0 +1,233 @@
+body{
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+}
+
+#title {
+    color:#9B72AA;
+    font-weight:900;
+    font-size:3.5rem;
+}
+
+.top_container {
+    padding: 3% 15%;
+}
+
+.top_row {
+    margin-bottom:  12%;
+}
+
+.subheading {
+    color:#9B72AA;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    font-size: 2.5rem;
+}
+
+.create-list-btn {
+    margin: 5% 0%;
+    font-weight: 300;
+    color: #fff;
+    background: #1eb760;
+    border:1px solid #178b49;
+    border-radius: 5px;
+    padding: 14px 60px;
+    font-size: 24px;
+}
+
+.no-sign-up {
+    color: #9e9e9e;
+}
+
+.intro-images {
+    position: relative;
+}
+
+.intro-img-one {
+    position: absolute;
+    z-index: 1;
+    transform: rotate(12deg);
+}
+
+.intro-img-two {
+    position: absolute;
+    z-index: -1;
+    left: 360px;
+    bottom: 100px;
+}
+
+.function_section {
+    background-color: #C6B4CE;
+    margin-top: 8%;
+    padding: 8% 15%;
+    position: relative;
+    z-index: 2;
+    
+}
+
+.feature {
+    padding-right: 8%;
+    text-align: center;
+}
+
+.feature-header{
+    color: #fff;
+    font-size: 1.5rem;
+    margin-top: 10%;
+  
+}
+
+.feature-img{
+    color: #9B72AA;
+    width: 18%;
+}
+
+.opinions-section {
+    padding: 10% 18%;
+    text-align: center;
+    
+}
+
+.quotes {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color:#9B72AA;
+}
+
+footer {
+    background-color: #9B72AA;
+    color: #fff;
+    text-align: center;
+    padding: 3%;
+}
+
+.copyright {
+    margin: 5px 0;
+}
+
+.fab-icon {
+    margin-left: 5px;
+    width: 5%;
+}
+
+
+/* navigation bar code */
+
+.navbar {
+    padding-bottom: 4.5rem;
+    padding: 1% 2%
+}
+
+.navbar-collapse {
+    display: inline;
+}
+
+.navbar-nav {
+    position: relative;
+    left: 80%;
+}
+
+.nav-item {
+    padding: 0 18px;
+    
+}
+.nav-link{
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.nav-link:hover {
+    color: #9B72AA;
+}
+
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+
+}
+
+.nav-container {
+    background: #C6B4CE;
+    color: #fff;
+}
+
+/* task adding */
+
+
+.create-list-heading {
+    padding: 1% 2%;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color:#9B72AA;
+}
+.task-input {
+    line-height: 2em;
+    padding:1% 2%;
+    margin:1% 2%;
+    color:#9B72AA;
+    font-size: 1.5rem;
+}
+
+.add-task-btn {
+    background: #1eb760;
+    border:1px solid #178b49;
+    border-radius: 5px;
+    padding: 10px 40px;
+    font-size: 24px;
+    color: #fff;
+}
+
+/* Tasks */
+.list-count-img{
+    width: 5%;
+    margin: 1% 2%;
+    display: inline;
+}
+
+.task {
+    display: inline;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.list-heading {
+    background: #9B72AA;
+    padding: 20px 2%;
+}
+
+.list_name {
+    display: inline;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.function-btn {
+    position: relative;
+    left: 60%;
+   display: inline;
+}
+
+.list_btn {
+    margin: 5% 0%;
+    font-weight: 300;
+    color: #fff;
+    background: #1eb760;
+    border:1px solid #178b49;
+    border-radius: 5px;
+    padding: 14px 60px;
+    font-size: 24px;
+}
+
+/* form */
+
+.register-form{
+width: 50%
+margin: auto;
+}
+
+.show_link {
+    color: blue;
+}
+
+

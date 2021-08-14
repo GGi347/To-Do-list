@@ -1,0 +1,100 @@
+{% include 'header.html'%}
+<body>
+    <section class="intro-section">
+        <div class="container-fluid top_container">
+            <div class="row top_row">
+                <div class="col-lg-9">
+                    <h1 id="title">Simplify</h1>
+                </div>
+                <div class="col-lg-3">
+                    {% if not current_user.is_authenticated%}
+                    <a href="{{url_for('login')}}" class="btn btn-outline-dark btn-lg login-btn">Log In</a>
+                    <a href="{{url_for('register')}}" class="btn btn-outline-dark btn-lg signup-btn">Sign Up</a>
+                    {% else %}
+                        <a href="{{url_for('logout')}}" class="btn btn-outline-dark btn-lg login-btn">Log Out</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 ">
+                    <h2 class="subheading">Make your life easier with Simple, Shareable To-Do lists</h2>
+                    <a href="{{url_for('create_list')}}" class="btn btn-lg btn-success create-list-btn">Create a to-do List</a>
+                    <p class="no-sign-up">No sign up required</p>
+                </div>
+                <div class="col-lg-6 intro-images">
+                    <img src="static/images/icon.png" alt="App Icon" class="intro-img-one">
+                    <img src="static/images/front_img.jpg" alt="Example Image" class="intro-img-two">
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+    <section class="container-fluid function_section">
+        <div class = "row">
+            <div class="col-lg-3  feature">
+                <img src="images/nosignin.png" class="feature-img">
+                <h2 class="feature-header">No sign up required</h2>
+
+            </div>
+            <div class="col-lg-3 feature">
+                <img src="images/share.png" class="feature-img">
+                <h2 class="feature-header">Share lists with ease.</h2>
+
+            </div>
+            <div class="col-lg-3 feature">
+                <img src="images/save.png" class="feature-img">
+                <h2 class="feature-header">Save a Record of lists</h2>
+
+            </div>
+            <div class="col-lg-3 feature">
+                <img src="images/website.png" class="feature-img">
+                <h2 class="feature-header">Access from anywhere.</h2>
+
+            </div>
+        </div>
+    </section>
+    <section class="opinions-section">
+
+        <div id="opinion-carousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+                <p class="quotes">"Out of clutter, find simplicity."</p>
+            </div>
+            <div class="carousel-item">
+              <p class="quotes">"Even the smallest steps move you forward."</p>
+            </div>
+            <div class="carousel-item">
+               <p class="quotes">"Future belongs to those who prepare for it."</p>
+            </div>
+          </div>
+        </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#opinion-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#opinion-carousel"
+          data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+
+    </section>
+
+</body>
+<footer>
+
+    <i class="fab fa-twitter contact-icon fab-icon"></i>
+    <i class="fab fa-facebook-f contact-icon fab-icon"></i>
+    <i class="fab fa-instagram contact-icon fab-icon"></i>
+    <i class="fas fa-envelope contact-icon fab-icon"></i>
+    <p class="copyright">© Copyright 2021 Simplify</p>
+    <div class="icons-copyright">Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect, Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+</footer>
+</html>

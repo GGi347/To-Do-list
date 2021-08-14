@@ -1,0 +1,31 @@
+{% include 'header.html'%}
+<body>
+  {% with flash_msg = get_flashed_messages()%}
+  {%if flash_msg%}
+  {% for msg in flash_msg %}
+    {{msg}}
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+  <form  class="register-form" action="{{url_for('register')}}" method="post" novalidate>
+    <div class="mb-3">
+      <label  class="form-label">Username</label>
+      <input type="text" class="form-control"  name="username" required="required">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Email address</label>
+      <input type="email" class="form-control" required="required"  name="email">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Password</label>
+      <input type="password" class="form-control" required="required" name="password">
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+
+</body>
+</html>
