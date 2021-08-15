@@ -15,6 +15,7 @@ from smtplib import SMTP
 
 app = Flask("__name__")
 to_do_list = []
+selected_list = -1
 SECRET_KEY = "this is the key"
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
@@ -34,16 +35,7 @@ class User(db.Model, UserMixin):
 class List(db.Model):
     id = db.Column(db.Integer, unique=True, primary_key=True)
     name = db.Column(db.String(200))
-    taskOne = db.Column(db.String(200))
-    taskTwo = db.Column(db.String(200))
-    taskThree = db.Column(db.String(200))
-    taskFour = db.Column(db.String(200))
-    taskFive = db.Column(db.String(200))
-    taskSix = db.Column(db.String(200))
-    taskSeven = db.Column(db.String(200))
-    taskEight = db.Column(db.String(200))
-    taskNine = db.Column(db.String(200))
-    taskTen = db.Column(db.String(200))
+    tasks = db.Column(db.String(1000))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
 db.create_all()
@@ -65,9 +57,11 @@ def home():
 
 @app.route("/list", methods=["POST", "GET"])
 def create_list():
+    global selected_list
     date = datetime.datetime.now()
     list_name = f"To-Do List ({date.strftime('%d-%m-%Y')})"
     all_lists = []
+    print("Create list", to_do_list)
     if current_user.is_authenticated:
         all_lists = show_lists(current_user.id)
         print("Cre", all_lists)
@@ -76,6 +70,7 @@ def create_list():
         to_do_list.append(request.form["task"])
 
         return redirect(url_for("create_list", to_do_list=to_do_list, list_name=list_name, all_lists=all_lists))
+
     return render_template("main.html", to_do_list=to_do_list, list_name=list_name, all_lists=all_lists)
 
 
@@ -124,10 +119,13 @@ def share_list():
         with SMTP("smtp.gmail.com") as connection:
             connection.starttls()
             connection.login(user="simplifytodolist@gmail.com", password="simplifyto-do347")
-            connection.sendmail(from_addr=request.form["sender_email"],
+            sender = request.form["sender_email"]
+            nl = '\n'
+            connection.sendmail(from_addr=sender,
                                 to_addrs=request.form["receiver_email"],
-                                msg="subject: to-do list \n\n"
-                                    "Here is the list")
+                                msg=f"subject: To-do list sent by {sender} \n\n"
+                                    f"Here is the to-do-list sent by {sender}\n"
+                                    f"{nl.join(to_do_list)}")
         print("success")
     return redirect(url_for('create_list'))
 
@@ -136,15 +134,14 @@ def share_list():
 def save_list(list_name, user_id):
     print(list_name)
     print(user_id)
-    len_list = len(to_do_list)
-    while len_list < 10:
-        to_do_list.append(None)
-        len_list += 1
+    to_do_list_str = " ".join(str(x) for x in to_do_list)
     list = List(name=list_name,
-                taskOne= to_do_list[0], taskTwo = to_do_list[1], taskThree = to_do_list[2], taskFour=to_do_list[3],
-                taskFive = to_do_list[4], taskSix=to_do_list[5], taskSeven=to_do_list[6], taskEight=to_do_list[6],
-                taskNine=to_do_list[8], taskTen=to_do_list[9], user_id=user_id)
-    db.session.add(list)
+                tasks= to_do_list_str, user_id=user_id)
+    if selected_list == -1:
+        db.session.add(list)
+    else:
+        l = List.query.get(selected_list)
+        l.tasks = to_do_list_str
     db.session.commit()
     return redirect(url_for('create_list'))
 
@@ -155,9 +152,35 @@ def show_lists(user_id):
     print("lists", lists)
     for l in lists:
         print("name", l.name)
-        print(l.taskOne)
-        print(l.taskTwo)
+        print("lists", l.tasks)
     return lists
+
+
+@app.route("/set_list/<list_id>")
+def set_list(list_id):
+    global to_do_list
+    global selected_list
+    selected_list = list_id
+    task_id = List.query.get(list_id)
+    tasks = task_id.tasks
+    to_do_list = list(tasks.split(" "))
+    return redirect(url_for('create_list'))
+
+
+@app.route("/reset")
+def reset():
+    global to_do_list
+    global selected_list
+    to_do_list = []
+    selected_list = -1
+    return redirect(url_for('create_list'))
+
+
+@app.route("/remove-task/<task>")
+def remove_task(task):
+    global to_do_list
+    to_do_list.remove(task)
+    return redirect(url_for('create_list'))
 
 
 @app.route("/logout")

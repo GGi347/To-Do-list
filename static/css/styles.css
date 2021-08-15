@@ -124,7 +124,7 @@ footer {
 
 .navbar-nav {
     position: relative;
-    left: 80%;
+    left: 70%;
 }
 
 .nav-item {
@@ -191,9 +191,16 @@ footer {
     font-weight: bold;
 }
 
+.delete-task-img {
+    width: 2%;
+    margin-bottom: 1%;
+    margin-left: 4%;
+}
+
 .list-heading {
     background: #9B72AA;
     padding: 20px 2%;
+    font-weight: bold;
 }
 
 .list_name {
@@ -204,12 +211,12 @@ footer {
 
 .function-btn {
     position: relative;
-    left: 60%;
-   display: inline;
+    left: 45%;
+  
 }
 
 .list_btn {
-    margin: 5% 0%;
+    margin-right: 1%;
     font-weight: 300;
     color: #fff;
     background: #1eb760;
@@ -230,4 +237,6 @@ margin: auto;
     color: blue;
 }
 
-
+.offcanvas-title {
+    color: black;
+}
